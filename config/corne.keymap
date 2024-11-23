@@ -8,12 +8,58 @@
 
 #define ZMK_MOUSE_DEFAULT_MOVE_VAL 1200  // 600
 #define ZMK_MOUSE_DEFAULT_SCRL_VAL 20    // 10
-#define U_MS_U &mmv MOVE_UP
-#define U_MS_D &mmv MOVE_DOWN
-#define U_MS_L &mmv MOVE_LEFT
-#define U_MS_R &mmv MOVE_RIGHT
+
+#define AR_1   &kp LC(LA(N1))
+#define AR_2   &kp LC(LA(N2))
+#define AR_3   &kp LC(LA(N3))
+#define AR_4   &kp LC(LA(N4))
+#define AR_5   &kp LC(LA(N5))
+#define AR_6   &kp LC(LA(N6))
+#define AR_7   &kp LC(LA(N7))
+#define AR_LW  &kp LC(LA(H))
+#define AR_RW  &kp LC(LA(L))
+#define AR_ACC &kp LC(LA(FSLH))
+#define AR_TIL &kp LC(LA(COMMA))
+
+#define SPAD &kp LS(LC(LA(SPACE)))
+
+#define MAC_SLP &kp LG(LC(Q))
 
 / {
+    combos {
+        compatible = "zmk,combos";
+        combo_find {
+            timeout-ms = <50>;
+            key-positions = <17 18>;
+            bindings = <&kp LG(F)>;
+            layers = <0>;
+        };
+        combo_undo {
+            timeout-ms = <50>;
+            key-positions = <27 28>;
+            bindings = <&kp LG(Z)>;
+            layers = <0>;
+        };
+        combo_cut {
+            timeout-ms = <50>;
+            key-positions = <28 29>;
+            bindings = <&kp LG(X)>;
+            layers = <0>;
+        };
+        combo_copy {
+            timeout-ms = <50>;
+            key-positions = <29 30>;
+            bindings = <&kp LG(C)>;
+            layers = <0>;
+        };
+        combo_paste {
+            timeout-ms = <50>;
+            key-positions = <30 31>;
+            bindings = <&kp LG(V)>;
+            layers = <0>;
+        };
+    };
+
     behaviors {
         td0: td0 {
             compatible = "zmk,behavior-tap-dance";
@@ -33,6 +79,34 @@
             time-to-max-speed-ms = <400>;      // 500
             delay-ms = <0>;                   // 10
         };
+
+        la: layer {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            flavor = "tap-unless-interrupted";
+            tapping-term-ms = <250>;
+            bindings = <&mo>, <&kp>;
+        };
+
+        lh: left_home {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            flavor = "tap-unless-interrupted";
+            tapping-term-ms = <250>;
+            require-prior-idle-ms = <125>;
+            bindings = <&kp>, <&kp>;
+            hold-trigger-key-positions = <7 8 9 10 11 12 20 21 22 23 24 25 33 34 35 36 37 38 40 41 42 43 44 45>; 
+        };
+
+        rh: right_home {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            flavor = "tap-unless-interrupted";
+            tapping-term-ms = <250>;
+            require-prior-idle-ms = <125>;
+            bindings = <&kp>, <&kp>;
+            hold-trigger-key-positions = <0 1 2 3 4 5 13 14 15 16 17 18 26 27 28 29 30 31 40 41 42 43 44 45>; 
+        };
     };
 
     rgb_encoder: rgb_encoder {
@@ -50,84 +124,190 @@
         tap-ms = <30>;
     };
 
+    arrow_encoder: arrow_encoder {
+        compatible = "zmk,behavior-sensor-rotate";
+        #sensor-binding-cells = <0>;
+        bindings = <&kp RIGHT>, <&kp LEFT>;
+
+        tap-ms = <30>;
+    };
+
+    // Base: 0
+    // Media: 1
+    // Nav: 2
+    // Mouse: 3
+    // Sym: 4
+    // Num: 5
+    // Fn: 6
+
     keymap {
         compatible = "zmk,keymap";
 
+        // -----------------------------------------------------------------------------------------
+        // | X | X | X | X | X | X |         X | X | X | X | X | X | X |
+        // | X | X | X | X | X | X |         X | X | X | X | X | X | X |
+        // | X | X | X | X | X | X |         X | X | X | X | X | X | X |
+        //             | X | X | X |         X | X | X | X |
+
         default_layer {
-            display-name = "QWERTY";
+            display-name = "BASE";
 
             // --------------------------------------------------------------------------------
-            // |  TAB |  Q  |  W  |  E  |  R  |  T  |                ↑    |  Y  |  U   |  I  |  O  |  P  | BKSP |      &kp UP_ARROW 
-            // | SHIFT |  A  |  S  |  D  |  F  |  G  |               ↓    |  H  |  J   |  K  |  L  |  ;  |  '   | 
-            // | CTRL |  Z  |  X  |  C  |  V  |  B  |                ←    |  N  |  M   |  ,  |  .  |  /  | ESC  |
-            //                    | GUI | LWR | SPC |                →    | ENT | RSE  | ALT |
+            // |  TAB  |  Q  |  W  |  E  |  R  |  T  |                ↑    |  Y  |  U   |  I  |  O  |  P  | BKSP | &UP_ARROW 
+            // | SHIFT |  A  |  S  |  D  |  F  |  G  |                ↓    |  H  |  J   |  K  |  L  |  ;  |  '   |
+            // | CTRL  |  Z  |  X  |  C  |  V  |  B  |                ←    |  N  |  M   |  ,  |  .  |  /  | ESC  |
+            //                     | GUI | LWR | SPC |                →    | ENT | RSE  | ALT |
             //                                                      enter
 
             bindings = <
-&kp TAB    &kp Q  &kp W      &kp E     &kp R  &kp T          &kp UP_ARROW     &kp Y        &kp U  &kp I      &kp O    &kp P     &kp BSPC
-&td0       &kp A  &kp S      &kp D     &kp F  &kp G          &kp DOWN_ARROW   &kp H        &kp J  &kp K      &kp L    &kp SEMI  &kp SQT
-&kp LCTRL  &kp Z  &kp X      &kp C     &kp V  &kp B          &kp LEFT_ARROW   &kp N        &kp M  &kp COMMA  &kp DOT  &kp FSLH  &kp ESC
-                  &kp SPACE  &kp LGUI  &mo 1  &lt 3 SPACE    &kp RIGHT_ARROW  &lt 3 ENTER  &mo 2  &kp RALT
-                                                             &kp ENTER
+&kp LALT  &kp Q       &kp W      &kp E      &kp R       &kp T     &kp UP_ARROW    &kp Y       &kp U       &kp I      &kp O      &kp P         &kp LGUI
+&kp LCTRL &lh LSHFT A &lh LGUI S &lh LALT D &lh LCTRL F &kp G     &kp DOWN_ARROW  &kp H       &rh LCTRL J &rh LALT K &rh LGUI L &rh LSHFT SQT &kp LCTRL
+&kp LSHFT &kp Z       &kp X      &kp C      &kp V       &kp B     &kp LEFT_ARROW  &kp N       &kp M       &kp COMMA  &kp DOT    &kp FSLH      &kp LSHFT
+                      &none      &la 1 ESC  &la 2 SPACE &la 3 TAB &kp RIGHT_ARROW &la 4 ENTER &la 5 BSPC  &la 6 DEL
+                                                                  &kp ENTER
             >;
 
-            label = "QWERTY";
+            label = "BASE";
+            sensor-bindings = <&arrow_encoder>;
+        };
+
+        media {
+            display-name = "MEDIA";
+
+            // -----------------------------------------------------------------------------------------
+            // | X | X | X | X | X | X |         X | X | X | X | X | X | X |
+            // | X | X | X | X | X | X |         X | X | X | X | X | X | X |
+            // | X | X | X | X | X | X |         X | X | X | X | X | X | X |
+            //             | X | X | X |         X | X | X | X |
+
+            bindings = <
+&kp LALT  &none &none &none &none &none &none      &none    &none        &none        &none &none &kp LGUI
+&kp LCTRL &none &none &none &none &none &none      &none    &kp C_VOL_DN &kp C_VOL_UP &none &none &kp LCTRL
+&kp LSHFT &none &none &none &none &none &none      &none    &none        &none        &none &none &kp LSHFT
+          &none &none &none &none &none &kp C_STOP &kp C_PP &kp C_MUTE
+                                  &none
+            >;
+
+            label = "MEDIA";
             sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
         };
 
-        lower_layer {
-            display-name = "NUMBER";
+        nav {
+            display-name = "NAV";
 
             // -----------------------------------------------------------------------------------------
-            // |  TAB |  1  |  2  |  3  |  4  |  5  |   |  6  |  7  |  8  |  9  |  0  | BKSP |
-            // | BTCLR| BT1 | BT2 | BT3 | BT4 | BT5 |   | LFT | DWN |  UP | RGT |     |      |
-            // | SHFT |     |     |     |     |     |   |     |     |     |     |     |      |
-            //                    | GUI |     | SPC |   | ENT |     | ALT |
+            // | X | X | X | X | X | X |         X | X | X | X | X | X | X |
+            // | X | X | X | X | X | X |         X | X | X | X | X | X | X |
+            // | X | X | X | X | X | X |         X | X | X | X | X | X | X |
+            //             | X | X | X |         X | X | X | X |
 
             bindings = <
-&trans  &kp N1           &kp N2          &kp N3        &kp N4        &kp N5             &mmv MOVE_UP     &kp N6           &kp N7           &kp N8           &kp N9           &kp N0    &kp BSPC
-&trans  &bt BT_CLR_ALL   &bt BT_SEL 0    &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3       &mmv MOVE_DOWN   &kp LEFT         &kp DOWN         &kp UP           &kp RIGHT        &kp HOME  &kp PG_UP
-&trans  &rgb_ug RGB_OFF  &rgb_ug RGB_ON  &trans        &trans        &rgb_ug RGB_EFF    &mmv MOVE_LEFT   &rgb_ug RGB_EFR  &rgb_ug RGB_SPI  &rgb_ug RGB_BRI  &rgb_ug RGB_BRD  &kp END   &kp PG_DN
-                         &kp C_MUTE      &trans        &trans        &trans             &mmv MOVE_RIGHT  &kp INS          &kp DEL          &trans
-                                                                                        &mkp LCLK
-            >;
+&kp LALT  AR_1  AR_2       AR_3  AR_4  AR_5  AR_6  AR_7           AR_LW          AR_RW        &none           &none &kp LGUI
+&kp LCTRL SPAD  &caps_word &none &none &none &none &kp LEFT_ARROW &kp DOWN_ARROW &kp UP_ARROW &kp RIGHT_ARROW &none &kp LCTRL
+&kp LSHFT &none &none      &none &none &none &none &kp HOME       &kp PG_DN      &kp PG_UP    &kp END         &none &kp LSHFT
+                &none      &none &none &none &none &none          &none          &none
+                                             &none
+               >;
 
-            label = "NUMBER";
+            label = "NAV";
             sensor-bindings = <&scroll_encoder>;
         };
 
-        raise_layer {
-            display-name = "SYMBOL";
-
-            // -----------------------------------------------------------------------------------------
-            // |  TAB |  !  |  @  |  #  |  $  |  %  |   |  ^  |  &  |  *  |  (  |  )  | BKSP |
-            // | CTRL |     |     |     |     |     |   |  -  |  =  |  [  |  ]  |  \  |  `   |
-            // | SHFT |     |     |     |     |     |   |  _  |  +  |  {  |  }  | "|" |  ~   |
-            //                    | GUI |     | SPC |   | ENT |     | ALT |
-
+        mouse {
+            display-name = "MOUSE";
             bindings = <
-&trans  &kp EXCL      &kp AT        &kp HASH   &kp DLLR   &kp PRCNT    &mmv MOVE_UP     &kp CARET  &kp AMPS   &kp ASTRK  &kp LPAR  &kp RPAR  &kp BSPC
-&trans  &bt BT_CLR    &mkp LCLK     &mkp MCLK  &mkp RCLK  &mkp MB4     &mmv MOVE_DOWN   &kp MINUS  &kp EQUAL  &kp LBKT   &kp RBKT  &kp BSLH  &kp GRAVE
-&trans  &out OUT_USB  &out OUT_BLE  &none      &none      &mkp MB5     &mmv MOVE_LEFT   &kp UNDER  &kp PLUS   &kp LBRC   &kp RBRC  &kp PIPE  &kp TILDE
-                      &trans        &trans     &trans     &kp SPACE    &mmv MOVE_RIGHT  &kp RET    &trans     &trans
-                                                                       &mkp LCLK
+&kp LALT  &none &none &none &none &none &none &none          &none          &none        &none           &none &kp LGUI
+&kp LCTRL &none &none &none &none &none &none &mmv MOVE_LEFT &mmv MOVE_DOWN &mmv MOVE_UP &mmv MOVE_RIGHT &none &kp LCTRL
+&kp LSHFT &none &none &none &none &none &none &none          &none          &none        &none           &none &kp LSHFT
+                &none &none &none &none &none &mkp RCLK      &mkp LCLK      &mkp MCLK
+                                        &none
             >;
 
-            label = "SYMBOL";
+            label = "MOUSE";
             sensor-bindings = <&scroll_encoder>;
         };
 
-        layer_3 {
+        sym {
+            display-name = "SYM";
+
+            // -----------------------------------------------------------------------------------------
+            // | X | X | X | X | X | X |         X | X | X | X | X | X | X |
+            // | X | X | X | X | X | X |         X | X | X | X | X | X | X |
+            // | X | X | X | X | X | X |         X | X | X | X | X | X | X |
+            //             | X | X | X |         X | X | X | X |
+
+            bindings = <
+&kp LALT  &kp LBRC  &kp AMPS &kp STAR  &kp LPAR  &kp RBRC  &none &none &none &none &none &none &kp LGUI
+&kp LCTRL &kp COLON &kp DLLR &kp PRCNT &kp CARET &kp PLUS  &none &none &none &none &none &none &kp LCTRL
+&kp LSHFT &kp TILDE &kp EXCL &kp AT    &kp HASH  &kp PIPE  &none &none &none &none &none &none &kp LSHFT
+                    &none    &kp LPAR  &kp RPAR  &kp UNDER &none &none &none &none
+                                                           &none
+            >;
+
+            label = "SYM";
+            sensor-bindings = <&scroll_encoder>;
+        };
+
+        num {
+            display-name = "NUM";
+
+            // -----------------------------------------------------------------------------------------
+            // | X | X | X | X | X | X |         X | X | X | X | X | X | X |
+            // | X | X | X | X | X | X |         X | X | X | X | X | X | X |
+            // | X | X | X | X | X | X |         X | X | X | X | X | X | X |
+            //             | X | X | X |         X | X | X | X |
+
+            bindings = <
+&kp LALT  &kp LBKT  &kp N7 &kp N8  &kp N9 &kp RBKT  &none &none &none &none &none &none &kp LGUI
+&kp LCTRL &kp SEMI  &kp N4 &kp N5  &kp N6 &kp EQUAL &none &none &none &none &none &none &kp LCTRL
+&kp LSHFT &kp GRAVE &kp N1 &kp N2  &kp N3 &kp BSLH  &none &none &none &none &none &none &kp LSHFT
+                    &none  &kp DOT &kp N0 &kp MINUS &none &none &none &none
+                                                    &none
+            >;
+
+            label = "NUM";
+            sensor-bindings = <&scroll_encoder>;
+        };
+
+        fn {
             display-name = "Fn";
+
+            // -----------------------------------------------------------------------------------------
+            // | X | X | X | X | X | X |         X | X | X | X | X | X | X |
+            // | X | X | X | X | X | X |         X | X | X | X | X | X | X |
+            // | X | X | X | X | X | X |         X | X | X | X | X | X | X |
+            //             | X | X | X |         X | X | X | X |
+
             bindings = <
-&trans  &kp F1      &kp F2      &kp F3       &kp F4     &kp F5      &mmv MOVE_UP     &kp F6       &kp F7     &kp F8       &kp F9      &kp F10          &kp F11
-&trans  &trans      &mkp LCLK   &mkp MCLK    &mkp RCLK  &mkp MB4    &mmv MOVE_DOWN   &bootloader  &mkp LCLK  &mkp MCLK    &mkp RCLK   &kp PRINTSCREEN  &kp F12
-&trans  &sys_reset  &trans      &bootloader  &trans     &mkp MB5    &mmv MOVE_LEFT   &trans       &trans     &bootloader  &sys_reset  &kp SCROLLLOCK   &kp PAUSE_BREAK
-                    &kp C_MUTE  &trans       &trans     &trans      &mmv MOVE_RIGHT  &trans       &trans     &trans
-                                                                    &mkp LCLK
+&none       &kp F12 &kp F7         &kp F8 &kp F9    &none   &none &bt BT_PRV &bt BT_NXT &bt BT_CLR &none &rgb_ug RGB_OFF MAC_SLP
+&none       &kp F11 &kp F4         &kp F5 &kp F6    AR_ACC  &none &none      &none      &none      &none &rgb_ug RGB_ON  &none
+&bootloader &kp F10 &kp F1         &kp F2 &kp F3    AR_TIL  &none &none      &none      &none      &none &sys_reset      &bootloader
+                    &bt BT_CLR_ALL &none  &kp SPACE &kp TAB &none &none      &none      &none
+                                                            &none
             >;
 
-            label = "FN";
+            label = "Fn";
+            sensor-bindings = <&scroll_encoder>;
+        };
+
+        sample {
+            display-name = "SAMPLE";
+
+            // -----------------------------------------------------------------------------------------
+            // | X | X | X | X | X | X |         X | X | X | X | X | X | X |
+            // | X | X | X | X | X | X |         X | X | X | X | X | X | X |
+            // | X | X | X | X | X | X |         X | X | X | X | X | X | X |
+            //             | X | X | X |         X | X | X | X |
+
+            bindings = <
+&none &none &none &none &none &none &none &none &none &none &none &none &none
+&none &none &none &none &none &none &none &none &none &none &none &none &none
+&none &none &none &none &none &none &none &none &none &none &none &none &none
+            &none &none &none &none &none &none &none &none
+                                    &none
+            >;
+
+            label = "SAMPLE";
             sensor-bindings = <&scroll_encoder>;
         };
     };
