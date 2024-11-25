@@ -71,7 +71,7 @@ ZMK_COMBO(undo , &kp LG(Z), 27 28, 0)
 ZMK_COMBO(cut  , &kp LG(X), 28 29, 0)
 ZMK_COMBO(copy , &kp LG(C), 29 30, 0)
 ZMK_COMBO(paste, &kp LG(V), 30 31, 0)
-ZMK_COMBO(caps , &caps_word, 14 24, 0)
+ZMK_COMBO(caps , &caps_word, 14 24, 0, 150)
 
 #define KEYS_L 0 1 2 3  4  5  13 14 15 16 17 18 26 27 28 29 30 31
 #define KEYS_R 7 8 9 10 11 12 20 21 22 23 24 25 33 34 35 36 37 38
@@ -115,11 +115,11 @@ ZMK_HOLD_TAP(la,
 // Fn: 6
 
 ZMK_LAYER(QWERTY,
-          &kp LALT  &kp Q        &kp W       &kp E       &kp R        &kp T     &kp UP_ARROW    &kp Y       &kp U        &kp I       &kp O       &kp P          &kp LGUI
-          &kp LCTRL &hml LSHFT A &hml LGUI S &hml LALT D &hml LCTRL F &kp G     &kp DOWN_ARROW  &kp H       &hmr LCTRL J &hmr LALT K &hmr LGUI L &hmr LSHFT SQT &kp LCTRL
-          &kp LSHFT &kp Z        &kp X       &kp C       &kp V        &kp B     &kp LEFT_ARROW  &kp N       &kp M        &kp COMMA   &kp DOT     &kp FSLH       &kp LSHFT
-                                 &none       &la 1 ESC   &la 2 SPACE  &la 3 TAB &kp RIGHT_ARROW &la 4 ENTER &la 5 BSPC   &la 6 DEL
-                                                                                &kp ENTER,
+          &kp ESC   &kp Q        &kp W       &kp E       &kp R        &kp T &kp UP_ARROW    &kp Y &kp U        &kp I       &kp O       &kp P          &kp BSPC
+          &kp TAB   &hml LSHFT A &hml LGUI S &hml LALT D &hml LCTRL F &kp G &kp DOWN_ARROW  &kp H &hmr LCTRL J &hmr LALT K &hmr LGUI L &hmr LSHFT SQT &kp ENTER
+          &kp LSHFT &kp Z        &kp X       &kp C       &kp V        &kp B &kp LEFT_ARROW  &kp N &kp M        &kp COMMA   &kp DOT     &kp FSLH       &kp LSHFT
+                                 &none       &mo 1       &la 2 SPACE  &mo 3 &kp RIGHT_ARROW &mo 4 &mo 5        &la 6 DEL
+                                                                            &none,
           &arrow_encoder
 )
 
@@ -144,7 +144,7 @@ ZMK_LAYER(NAV,
 ZMK_LAYER(MOUSE,
          &kp LALT  &none &none &none &none &none &none &none          &none            &none          &none           &none &kp LGUI
          &kp LCTRL &none &none &none &none &none &none &mmv MOVE_LEFT &mmv MOVE_DOWN   &mmv MOVE_UP   &mmv MOVE_RIGHT &none &kp LCTRL
-         &kp LSHFT &none &none &none &none &none &none &none          &mmv SCROLL_DOWN &mmv SCROLL_UP &none           &none &kp LSHFT
+         &kp LSHFT &none &none &none &none &none &none &none          &none &none &none           &none &kp LSHFT
                          &none &none &none &none &none &mkp RCLK      &mkp LCLK        &mkp MCLK
                                                  &none,
          &scroll_encoder
