@@ -66,12 +66,12 @@
     };
 };
 
-ZMK_COMBO(find, &kp LG(F), 17 18, 0)
-ZMK_COMBO(undo, &kp LG(Z), 27 28, 0)
-ZMK_COMBO(cut, &kp LG(X), 28 29, 0)
-ZMK_COMBO(copy, &kp LG(C), 29 30, 0)
+ZMK_COMBO(find , &kp LG(F), 17 18, 0)
+ZMK_COMBO(undo , &kp LG(Z), 27 28, 0)
+ZMK_COMBO(cut  , &kp LG(X), 28 29, 0)
+ZMK_COMBO(copy , &kp LG(C), 29 30, 0)
 ZMK_COMBO(paste, &kp LG(V), 30 31, 0)
-ZMK_COMBO(caps, &caps_word, 14 24, 0)
+ZMK_COMBO(caps , &caps_word, 14 24, 0)
 
 #define KEYS_L 0 1 2 3  4  5  13 14 15 16 17 18 26 27 28 29 30 31
 #define KEYS_R 7 8 9 10 11 12 20 21 22 23 24 25 33 34 35 36 37 38
@@ -120,10 +120,10 @@ ZMK_LAYER(QWERTY,
           &kp LSHFT &kp Z        &kp X       &kp C       &kp V        &kp B     &kp LEFT_ARROW  &kp N       &kp M        &kp COMMA   &kp DOT     &kp FSLH       &kp LSHFT
                                  &none       &la 1 ESC   &la 2 SPACE  &la 3 TAB &kp RIGHT_ARROW &la 4 ENTER &la 5 BSPC   &la 6 DEL
                                                                                 &kp ENTER,
-          &arrow_encoder
+          <&arrow_encoder>
 )
 
-ZMK_LAYER("MEDIA",
+ZMK_LAYER(MEDIA,
           &kp LALT  &none &none &none &none &none &none      &none    &none        &none        &none &none &kp LGUI
           &kp LCTRL &none &none &none &none &none &none      &none    &kp C_VOL_DN &kp C_VOL_UP &none &none &kp LCTRL
           &kp LSHFT &none &none &none &none &none &none      &none    &none        &none        &none &none &kp LSHFT
@@ -132,7 +132,7 @@ ZMK_LAYER("MEDIA",
           <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>
 )
 
-ZMK_LAYER("NAV",
+ZMK_LAYER(NAV,
           &kp LALT  AR_1  AR_2  AR_3  AR_4  AR_5  AR_6  AR_7           AR_LW          AR_RW        &none           &none &kp LGUI
           &kp LCTRL SPAD  &none &none &none &none &none &kp LEFT_ARROW &kp DOWN_ARROW &kp UP_ARROW &kp RIGHT_ARROW &none &kp LCTRL
           &kp LSHFT &none &none &none &none &none &none &kp HOME       &kp PG_DN      &kp PG_UP    &kp END         &none &kp LSHFT
@@ -141,16 +141,16 @@ ZMK_LAYER("NAV",
           <&scroll_encoder>
 )
 
-MK_LAYER("MOUSE",
-         &kp LALT  &none &none &none &none &none &none &none          &none          &none        &none           &none &kp LGUI
-         &kp LCTRL &none &none &none &none &none &none &mmv MOVE_LEFT &mmv MOVE_DOWN &mmv MOVE_UP &mmv MOVE_RIGHT &none &kp LCTRL
-         &kp LSHFT &none &none &none &none &none &none &none          &none          &none        &none           &none &kp LSHFT
-                         &none &none &none &none &none &mkp RCLK      &mkp LCLK      &mkp MCLK
+MK_LAYER(MOUSE,
+         &kp LALT  &none &none &none &none &none &none &none          &none            &none          &none           &none &kp LGUI
+         &kp LCTRL &none &none &none &none &none &none &mmv MOVE_LEFT &mmv MOVE_DOWN   &mmv MOVE_UP   &mmv MOVE_RIGHT &none &kp LCTRL
+         &kp LSHFT &none &none &none &none &none &none &none          &mmv SCROLL_DOWN &mmv SCROLL_UP &none           &none &kp LSHFT
+                         &none &none &none &none &none &mkp RCLK      &mkp LCLK        &mkp MCLK
                                                  &none,
          <&scroll_encoder>
 )
 
-ZMK_LAYER("SYM",
+ZMK_LAYER(SYM,
           &kp LALT  &kp LBRC  &kp AMPS &kp STAR  &kp LPAR  &kp RBRC  &none &none &none &none &none &none &kp LGUI
           &kp LCTRL &kp COLON &kp DLLR &kp PRCNT &kp CARET &kp PLUS  &none &none &none &none &none &none &kp LCTRL
           &kp LSHFT &kp TILDE &kp EXCL &kp AT    &kp HASH  &kp PIPE  &none &none &none &none &none &none &kp LSHFT
@@ -159,7 +159,7 @@ ZMK_LAYER("SYM",
           <&scroll_encoder>
 )
 
-ZMK_LAYER("NUM",
+ZMK_LAYER(NUM,
           &kp LALT  &kp LBKT  &kp N7 &kp N8  &kp N9 &kp RBKT  &none &none &none &none &none &none &kp LGUI
           &kp LCTRL &kp SEMI  &kp N4 &kp N5  &kp N6 &kp EQUAL &none &none &none &none &none &none &kp LCTRL
           &kp LSHFT &kp GRAVE &kp N1 &kp N2  &kp N3 &kp BSLH  &none &none &none &none &none &none &kp LSHFT
@@ -168,7 +168,7 @@ ZMK_LAYER("NUM",
           <&scroll_encoder>
 )
 
-ZMK_LAYER("Fn",
+ZMK_LAYER(Fn,
           &none       &kp F12 &kp F7         &kp F8 &kp F9    &none   &none &bt BT_PRV &bt BT_NXT &bt BT_CLR &none &rgb_ug RGB_OFF MAC_SLP
           &none       &kp F11 &kp F4         &kp F5 &kp F6    AR_ACC  &none &none      &none      &none      &none &rgb_ug RGB_ON  &none
           &bootloader &kp F10 &kp F1         &kp F2 &kp F3    AR_TIL  &none &none      &none      &none      &none &sys_reset      &bootloader
@@ -177,7 +177,7 @@ ZMK_LAYER("Fn",
           <&scroll_encoder>
 )
 
-ZMK_LAYER("SAMPLE",
+ZMK_LAYER(SAMPLE,
           &none &none &none &none &none &none &none &none &none &none &none &none &none
           &none &none &none &none &none &none &none &none &none &none &none &none &none
           &none &none &none &none &none &none &none &none &none &none &none &none &none
