@@ -27,6 +27,45 @@
 
 #define MAC_SLP &kp LG(LC(Q))
 
+/ {
+    behaviors {
+        mmv {
+            acceleration-exponent = <1>;      // 1
+            time-to-max-speed-ms = <900>;    // 40
+            delay-ms = <0>;                   // 0
+        };
+
+        msc {
+            acceleration-exponent = <1>;      // 0
+            time-to-max-speed-ms = <400>;      // 500
+            delay-ms = <0>;                   // 10
+        };
+    };
+
+    rgb_encoder: rgb_encoder {
+        compatible = "zmk,behavior-sensor-rotate";
+        label = "RGB_ENCODER";
+        #sensor-binding-cells = <0>;
+        bindings = <&rgb_ug RGB_BRI>, <&rgb_ug RGB_BRD>;
+    };
+
+    scroll_encoder: scroll_encoder {
+        compatible = "zmk,behavior-sensor-rotate";
+        #sensor-binding-cells = <0>;
+        bindings = <&msc SCRL_DOWN>, <&msc SCRL_UP>;
+
+        tap-ms = <30>;
+    };
+
+    arrow_encoder: arrow_encoder {
+        compatible = "zmk,behavior-sensor-rotate";
+        #sensor-binding-cells = <0>;
+        bindings = <&kp RIGHT>, <&kp LEFT>;
+
+        tap-ms = <30>;
+    };
+};
+
 ZMK_COMBO(find, &kp LG(F), 17 18, 0)
 ZMK_COMBO(undo, &kp LG(Z), 27 28, 0)
 ZMK_COMBO(cut, &kp LG(X), 28 29, 0)
@@ -84,186 +123,66 @@ ZMK_LAYER(QWERTY,
           &arrow_encoder
 )
 
-/ {
-    behaviors {
-        mmv {
-            acceleration-exponent = <1>;      // 1
-            time-to-max-speed-ms = <900>;    // 40
-            delay-ms = <0>;                   // 0
-        };
+ZMK_LAYER("MEDIA",
+          &kp LALT  &none &none &none &none &none &none      &none    &none        &none        &none &none &kp LGUI
+          &kp LCTRL &none &none &none &none &none &none      &none    &kp C_VOL_DN &kp C_VOL_UP &none &none &kp LCTRL
+          &kp LSHFT &none &none &none &none &none &none      &none    &none        &none        &none &none &kp LSHFT
+                    &none &none &none &none &none &kp C_STOP &kp C_PP &kp C_MUTE
+                                            &none,
+          <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>
+)
 
-        msc {
-            acceleration-exponent = <1>;      // 0
-            time-to-max-speed-ms = <400>;      // 500
-            delay-ms = <0>;                   // 10
-        };
-    };
+ZMK_LAYER("NAV",
+          &kp LALT  AR_1  AR_2  AR_3  AR_4  AR_5  AR_6  AR_7           AR_LW          AR_RW        &none           &none &kp LGUI
+          &kp LCTRL SPAD  &none &none &none &none &none &kp LEFT_ARROW &kp DOWN_ARROW &kp UP_ARROW &kp RIGHT_ARROW &none &kp LCTRL
+          &kp LSHFT &none &none &none &none &none &none &kp HOME       &kp PG_DN      &kp PG_UP    &kp END         &none &kp LSHFT
+                          &none &none &none &none &none &none          &none          &none
+                                                       &none,
+          <&scroll_encoder>
+)
 
-    rgb_encoder: rgb_encoder {
-        compatible = "zmk,behavior-sensor-rotate";
-        label = "RGB_ENCODER";
-        #sensor-binding-cells = <0>;
-        bindings = <&rgb_ug RGB_BRI>, <&rgb_ug RGB_BRD>;
-    };
+MK_LAYER("MOUSE",
+         &kp LALT  &none &none &none &none &none &none &none          &none          &none        &none           &none &kp LGUI
+         &kp LCTRL &none &none &none &none &none &none &mmv MOVE_LEFT &mmv MOVE_DOWN &mmv MOVE_UP &mmv MOVE_RIGHT &none &kp LCTRL
+         &kp LSHFT &none &none &none &none &none &none &none          &none          &none        &none           &none &kp LSHFT
+                         &none &none &none &none &none &mkp RCLK      &mkp LCLK      &mkp MCLK
+                                                 &none,
+         <&scroll_encoder>
+)
 
-    scroll_encoder: scroll_encoder {
-        compatible = "zmk,behavior-sensor-rotate";
-        #sensor-binding-cells = <0>;
-        bindings = <&msc SCRL_DOWN>, <&msc SCRL_UP>;
+ZMK_LAYER("SYM",
+          &kp LALT  &kp LBRC  &kp AMPS &kp STAR  &kp LPAR  &kp RBRC  &none &none &none &none &none &none &kp LGUI
+          &kp LCTRL &kp COLON &kp DLLR &kp PRCNT &kp CARET &kp PLUS  &none &none &none &none &none &none &kp LCTRL
+          &kp LSHFT &kp TILDE &kp EXCL &kp AT    &kp HASH  &kp PIPE  &none &none &none &none &none &none &kp LSHFT
+                              &none    &kp LPAR  &kp RPAR  &kp UNDER &none &none &none &none
+                                                                     &none,
+          <&scroll_encoder>
+)
 
-        tap-ms = <30>;
-    };
+ZMK_LAYER("NUM",
+          &kp LALT  &kp LBKT  &kp N7 &kp N8  &kp N9 &kp RBKT  &none &none &none &none &none &none &kp LGUI
+          &kp LCTRL &kp SEMI  &kp N4 &kp N5  &kp N6 &kp EQUAL &none &none &none &none &none &none &kp LCTRL
+          &kp LSHFT &kp GRAVE &kp N1 &kp N2  &kp N3 &kp BSLH  &none &none &none &none &none &none &kp LSHFT
+                              &none  &kp DOT &kp N0 &kp MINUS &none &none &none &none
+                                                              &none,
+          <&scroll_encoder>
+)
 
-    arrow_encoder: arrow_encoder {
-        compatible = "zmk,behavior-sensor-rotate";
-        #sensor-binding-cells = <0>;
-        bindings = <&kp RIGHT>, <&kp LEFT>;
+ZMK_LAYER("Fn",
+          &none       &kp F12 &kp F7         &kp F8 &kp F9    &none   &none &bt BT_PRV &bt BT_NXT &bt BT_CLR &none &rgb_ug RGB_OFF MAC_SLP
+          &none       &kp F11 &kp F4         &kp F5 &kp F6    AR_ACC  &none &none      &none      &none      &none &rgb_ug RGB_ON  &none
+          &bootloader &kp F10 &kp F1         &kp F2 &kp F3    AR_TIL  &none &none      &none      &none      &none &sys_reset      &bootloader
+                              &bt BT_CLR_ALL &none  &kp SPACE &kp TAB &none &none      &none      &none
+                                                                      &none,
+          <&scroll_encoder>
+)
 
-        tap-ms = <30>;
-    };
+ZMK_LAYER("SAMPLE",
+          &none &none &none &none &none &none &none &none &none &none &none &none &none
+          &none &none &none &none &none &none &none &none &none &none &none &none &none
+          &none &none &none &none &none &none &none &none &none &none &none &none &none
+                      &none &none &none &none &none &none &none &none
+                                              &none,
+          <&scroll_encoder>
+)
 
-
-    keymap {
-        compatible = "zmk,keymap";
-
-        media {
-            display-name = "MEDIA";
-
-            // -----------------------------------------------------------------------------------------
-            // | X | X | X | X | X | X |         X | X | X | X | X | X | X |
-            // | X | X | X | X | X | X |         X | X | X | X | X | X | X |
-            // | X | X | X | X | X | X |         X | X | X | X | X | X | X |
-            //             | X | X | X |         X | X | X | X |
-
-            bindings = <
-&kp LALT  &none &none &none &none &none &none      &none    &none        &none        &none &none &kp LGUI
-&kp LCTRL &none &none &none &none &none &none      &none    &kp C_VOL_DN &kp C_VOL_UP &none &none &kp LCTRL
-&kp LSHFT &none &none &none &none &none &none      &none    &none        &none        &none &none &kp LSHFT
-          &none &none &none &none &none &kp C_STOP &kp C_PP &kp C_MUTE
-                                  &none
-            >;
-
-            label = "MEDIA";
-            sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
-        };
-
-        nav {
-            display-name = "NAV";
-
-            // -----------------------------------------------------------------------------------------
-            // | X | X | X | X | X | X |         X | X | X | X | X | X | X |
-            // | X | X | X | X | X | X |         X | X | X | X | X | X | X |
-            // | X | X | X | X | X | X |         X | X | X | X | X | X | X |
-            //             | X | X | X |         X | X | X | X |
-
-            bindings = <
-&kp LALT  AR_1  AR_2  AR_3  AR_4  AR_5  AR_6  AR_7           AR_LW          AR_RW        &none           &none &kp LGUI
-&kp LCTRL SPAD  &none &none &none &none &none &kp LEFT_ARROW &kp DOWN_ARROW &kp UP_ARROW &kp RIGHT_ARROW &none &kp LCTRL
-&kp LSHFT &none &none &none &none &none &none &kp HOME       &kp PG_DN      &kp PG_UP    &kp END         &none &kp LSHFT
-                &none &none &none &none &none &none          &none          &none
-                                             &none
-               >;
-
-            label = "NAV";
-            sensor-bindings = <&scroll_encoder>;
-        };
-
-        mouse {
-            display-name = "MOUSE";
-            bindings = <
-&kp LALT  &none &none &none &none &none &none &none          &none          &none        &none           &none &kp LGUI
-&kp LCTRL &none &none &none &none &none &none &mmv MOVE_LEFT &mmv MOVE_DOWN &mmv MOVE_UP &mmv MOVE_RIGHT &none &kp LCTRL
-&kp LSHFT &none &none &none &none &none &none &none          &none          &none        &none           &none &kp LSHFT
-                &none &none &none &none &none &mkp RCLK      &mkp LCLK      &mkp MCLK
-                                        &none
-            >;
-
-            label = "MOUSE";
-            sensor-bindings = <&scroll_encoder>;
-        };
-
-        sym {
-            display-name = "SYM";
-
-            // -----------------------------------------------------------------------------------------
-            // | X | X | X | X | X | X |         X | X | X | X | X | X | X |
-            // | X | X | X | X | X | X |         X | X | X | X | X | X | X |
-            // | X | X | X | X | X | X |         X | X | X | X | X | X | X |
-            //             | X | X | X |         X | X | X | X |
-
-            bindings = <
-&kp LALT  &kp LBRC  &kp AMPS &kp STAR  &kp LPAR  &kp RBRC  &none &none &none &none &none &none &kp LGUI
-&kp LCTRL &kp COLON &kp DLLR &kp PRCNT &kp CARET &kp PLUS  &none &none &none &none &none &none &kp LCTRL
-&kp LSHFT &kp TILDE &kp EXCL &kp AT    &kp HASH  &kp PIPE  &none &none &none &none &none &none &kp LSHFT
-                    &none    &kp LPAR  &kp RPAR  &kp UNDER &none &none &none &none
-                                                           &none
-            >;
-
-            label = "SYM";
-            sensor-bindings = <&scroll_encoder>;
-        };
-
-        num {
-            display-name = "NUM";
-
-            // -----------------------------------------------------------------------------------------
-            // | X | X | X | X | X | X |         X | X | X | X | X | X | X |
-            // | X | X | X | X | X | X |         X | X | X | X | X | X | X |
-            // | X | X | X | X | X | X |         X | X | X | X | X | X | X |
-            //             | X | X | X |         X | X | X | X |
-
-            bindings = <
-&kp LALT  &kp LBKT  &kp N7 &kp N8  &kp N9 &kp RBKT  &none &none &none &none &none &none &kp LGUI
-&kp LCTRL &kp SEMI  &kp N4 &kp N5  &kp N6 &kp EQUAL &none &none &none &none &none &none &kp LCTRL
-&kp LSHFT &kp GRAVE &kp N1 &kp N2  &kp N3 &kp BSLH  &none &none &none &none &none &none &kp LSHFT
-                    &none  &kp DOT &kp N0 &kp MINUS &none &none &none &none
-                                                    &none
-            >;
-
-            label = "NUM";
-            sensor-bindings = <&scroll_encoder>;
-        };
-
-        fn {
-            display-name = "Fn";
-
-            // -----------------------------------------------------------------------------------------
-            // | X | X | X | X | X | X |         X | X | X | X | X | X | X |
-            // | X | X | X | X | X | X |         X | X | X | X | X | X | X |
-            // | X | X | X | X | X | X |         X | X | X | X | X | X | X |
-            //             | X | X | X |         X | X | X | X |
-
-            bindings = <
-&none       &kp F12 &kp F7         &kp F8 &kp F9    &none   &none &bt BT_PRV &bt BT_NXT &bt BT_CLR &none &rgb_ug RGB_OFF MAC_SLP
-&none       &kp F11 &kp F4         &kp F5 &kp F6    AR_ACC  &none &none      &none      &none      &none &rgb_ug RGB_ON  &none
-&bootloader &kp F10 &kp F1         &kp F2 &kp F3    AR_TIL  &none &none      &none      &none      &none &sys_reset      &bootloader
-                    &bt BT_CLR_ALL &none  &kp SPACE &kp TAB &none &none      &none      &none
-                                                            &none
-            >;
-
-            label = "Fn";
-            sensor-bindings = <&scroll_encoder>;
-        };
-
-        sample {
-            display-name = "SAMPLE";
-
-            // -----------------------------------------------------------------------------------------
-            // | X | X | X | X | X | X |         X | X | X | X | X | X | X |
-            // | X | X | X | X | X | X |         X | X | X | X | X | X | X |
-            // | X | X | X | X | X | X |         X | X | X | X | X | X | X |
-            //             | X | X | X |         X | X | X | X |
-
-            bindings = <
-&none &none &none &none &none &none &none &none &none &none &none &none &none
-&none &none &none &none &none &none &none &none &none &none &none &none &none
-&none &none &none &none &none &none &none &none &none &none &none &none &none
-            &none &none &none &none &none &none &none &none
-                                    &none
-            >;
-
-            label = "SAMPLE";
-            sensor-bindings = <&scroll_encoder>;
-        };
-    };
-};
