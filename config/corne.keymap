@@ -7,6 +7,7 @@
 #include <dt-bindings/zmk/rgb.h>
 
 #include "zmk-helpers/helper.h"
+#include <behaviors/num_word.dtsi>
 
 #define ZMK_MOUSE_DEFAULT_MOVE_VAL 1200  // 600
 #define ZMK_MOUSE_DEFAULT_SCRL_VAL 20    // 10
@@ -118,7 +119,7 @@ ZMK_LAYER(QWERTY,
           &kp ESC   &kp Q        &kp W       &kp E       &kp R        &kp T &kp UP_ARROW    &kp Y &kp U        &kp I       &kp O       &kp P          &kp BSPC
           &kp TAB   &hml LSHFT A &hml LGUI S &hml LALT D &hml LCTRL F &kp G &kp DOWN_ARROW  &kp H &hmr LCTRL J &hmr LALT K &hmr LGUI L &hmr LSHFT SQT &kp ENTER
           &kp LSHFT &kp Z        &kp X       &kp C       &kp V        &kp B &kp LEFT_ARROW  &kp N &kp M        &kp COMMA   &kp DOT     &kp FSLH       &kp LSHFT
-                                 &none       &mo 1       &la 2 SPACE  &mo 3 &kp RIGHT_ARROW &mo 4 &mo 5        &la 6 DEL
+                                 &none       &mo 1       &la 2 SPACE  &mo 3 &kp RIGHT_ARROW &mo 4 &num_word 5  &la 6 DEL
                                                                             &none,
           &arrow_encoder
 )
@@ -142,10 +143,10 @@ ZMK_LAYER(NAV,
 )
 
 ZMK_LAYER(MOUSE,
-         &kp LALT  &none &none &none &none &none &none &none          &none            &none          &none           &none &kp LGUI
-         &kp LCTRL &none &none &none &none &none &none &mmv MOVE_LEFT &mmv MOVE_DOWN   &mmv MOVE_UP   &mmv MOVE_RIGHT &none &kp LCTRL
-         &kp LSHFT &none &none &none &none &none &none &none          &none &none &none           &none &kp LSHFT
-                         &none &none &none &none &none &mkp RCLK      &mkp LCLK        &mkp MCLK
+         &kp LALT  &none &none &none &none &none &none &none          &none          &none        &none           &none &kp LGUI
+         &kp LCTRL &none &none &none &none &none &none &mmv MOVE_LEFT &mmv MOVE_DOWN &mmv MOVE_UP &mmv MOVE_RIGHT &none &kp LCTRL
+         &kp LSHFT &none &none &none &none &none &none &none          &none          &none        &none           &none &kp LSHFT
+                         &none &none &none &none &none &mkp RCLK      &mkp LCLK      &mkp MCLK
                                                  &none,
          &scroll_encoder
 )
