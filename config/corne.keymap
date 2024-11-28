@@ -78,6 +78,7 @@ ZMK_COMBO(undo , &kp LG(Z), 27 28, 0)
 ZMK_COMBO(cut  , &kp LG(X), 28 29, 0)
 ZMK_COMBO(copy , &kp LG(C), 29 30, 0)
 ZMK_COMBO(paste, &kp LG(V), 30 31, 0)
+ZMK_COMBO(paste2, &kp LS(LG(V)), 30 31, 2)
 ZMK_COMBO(caps , &caps_word, 17 21, 0, 50)
 
 #define KEYS_L 0 1 2 3  4  5  13 14 15 16 17 18 26 27 28 29 30 31
