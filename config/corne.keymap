@@ -191,7 +191,7 @@ ZMK_BEHAVIOR(tmuxs, macro,
 // ├───────────┼──────────────┼─────────────┼─────────────────┼─────────────────┼─────────────────┤  ├─────────────────┤  ├─────────────────┼─────────────────┼──────────────┼─────────────┼────────────────┼───────────┤
      &kp LSHFT   &kp Z          &kp X         &kp C             &kp V             &kp B                &kp LEFT_ARROW       &kp N             &kp M             &kp COMMA      &kp DOT       &kp FSLH         &kp LSHFT
 // ╰───────────┴──────────────┼─────────────┼─────────────────┼─────────────────┼─────────────────┤  ├─────────────────┤  ├─────────────────┼─────────────────┼──────────────┼─────────────┴────────────────┴───────────╯
-                                &none         &la MEDIA_L ESC   &la NAV_L SPACE   &la MOUSE_L TAB      &kp RIGHT_ARROW      &la SYM_L ENTER   &la NUM_L BSPC    &la FN_L DEL
+                                &none         &mo MEDIA_L &la NAV_L SPACE   &mo MOUSE_L      &kp RIGHT_ARROW      &la SYM_L ENTER   &mo NUM_L    &la FN_L DEL
 //                            ╰─────────────┴─────────────────┴─────────────────┴─────────────────╯  ├─────────────────┤  ╰─────────────────┴─────────────────┴──────────────╯
                                                                                                        &none
 //                                                                                                   ╰─────────────────╯
@@ -268,9 +268,9 @@ ZMK_BEHAVIOR(tmuxs, macro,
 
             bindings = <
 // ╭───────────┬───────────┬──────────┬───────────┬───────────┬───────────╮  ╭───────╮  ╭───────┬───────┬───────┬───────┬───────┬───────────╮
-     &kp LALT    &kp LBRC    &kp EXCL   &kp AT      &kp HASH    &kp RBRC       &none      &none   &none   &none   &none   &none   &kp LGUI
+     &kp LALT    &kp LBRC    &kp EXCL   &kp AT      &kp HASH    &kp RBRC       &none      &none   &none   &none   &none   &none   &kp BSPC
 // ├───────────┼───────────┼──────────┼───────────┼───────────┼───────────┤  ├───────┤  ├───────┼───────┼───────┼───────┼───────┼───────────┤
-     &kp LCTRL   &kp COLON   &kp DLLR   &kp PRCNT   &kp CARET   &kp PLUS       &none      &none   &none   &none   &none   &none   &kp LCTRL
+     &kp LCTRL   &kp COLON   &kp DLLR   &kp PRCNT   &kp CARET   &kp PLUS       &none      &none   &none   &none   &none   &none   &kp LGUI
 // ├───────────┼───────────┼──────────┼───────────┼───────────┼───────────┤  ├───────┤  ├───────┼───────┼───────┼───────┼───────┼───────────┤
      &kp LSHFT   &kp TILDE   &kp AMPS   &kp STAR    &kp LPAR    &kp PIPE       &none      &none   &none   &none   &none   &none   &kp LSHFT
 // ╰───────────┴───────────┼──────────┼───────────┼───────────┼───────────┤  ├───────┤  ├───────┼───────┼───────┼───────┴───────┴───────────╯
@@ -289,9 +289,9 @@ ZMK_BEHAVIOR(tmuxs, macro,
 
             bindings = <
 // ╭───────────┬───────────┬────────┬─────────┬────────┬───────────╮  ╭───────╮  ╭────────┬───────────┬──────────┬──────────┬───────────┬───────────╮
-     &kp LALT    &kp LBKT    &kp N1   &kp N2    &kp N3   &kp RBKT       &none      &trans   &trans      &trans     &trans     &trans      &kp LGUI
+     &kp LALT    &kp LBKT    &kp N1   &kp N2    &kp N3   &kp RBKT       &none      &trans   &trans      &trans     &trans     &trans      &kp BSPC
 // ├───────────┼───────────┼────────┼─────────┼────────┼───────────┤  ├───────┤  ├────────┼───────────┼──────────┼──────────┼───────────┼───────────┤
-     &kp LCTRL   &kp SEMI    &kp N4   &kp N5    &kp N6   &kp EQUAL      &none      &trans   &kp LCTRL   &kp LALT   &kp LGUI   &kp LSHFT   &kp LCTRL
+     &kp LCTRL   &kp SEMI    &kp N4   &kp N5    &kp N6   &kp EQUAL      &none      &trans   &kp LCTRL   &kp LALT   &kp LGUI   &kp LSHFT   &kp LGUI
 // ├───────────┼───────────┼────────┼─────────┼────────┼───────────┤  ├───────┤  ├────────┼───────────┼──────────┼──────────┼───────────┼───────────┤
      &kp LSHFT   &kp GRAVE   &kp N7   &kp N8    &kp N9   &kp BSLH       &none      &trans   &trans      &trans     &trans     &trans      &kp LSHFT
 // ╰───────────┴───────────┼────────┼─────────┼────────┼───────────┤  ├───────┤  ├────────┼───────────┼──────────┼──────────┴───────────┴───────────╯
