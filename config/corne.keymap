@@ -23,6 +23,7 @@
 #define AR_RW  &kp LC(LA(L))
 #define AR_ACC &kp LC(LA(FSLH))
 #define AR_TIL &kp LC(LA(COMMA))
+#define OPWD   &kp LG(LA(BSLH))
 
 #define SPAD &kp LS(LC(LA(SPACE)))
 
@@ -192,7 +193,7 @@ ZMK_BEHAVIOR(tmuxs, macro,
 // ├───────────┼──────────────┼─────────────┼──────────────────┼─────────────────┼───────────────────┤  ├─────────────────┤  ├───────────┼──────────────┼──────────────┼─────────────┼────────────────┼───────────┤
      &kp LSHFT   &kp Z          &kp X         &kp C              &kp V             &kp B                  &kp LEFT_ARROW       &kp N       &kp M          &kp COMMA      &kp DOT       &kp FSLH         &kp LSHFT
 // ╰───────────┴──────────────┼─────────────┼──────────────────┼─────────────────┼───────────────────┤  ├─────────────────┤  ├───────────┼──────────────┼──────────────┼─────────────┴────────────────┴───────────╯
-                                &none         &la MEDIA_L BSPC   &la NAV_L SPACE   &la MOUSE_L ENTER      &kp RIGHT_ARROW      &mo SYM_L   &mo NUM_L      &la FN_L DEL
+                                OPWD          &la MEDIA_L BSPC   &la NAV_L SPACE   &la MOUSE_L ENTER      &kp RIGHT_ARROW      &mo SYM_L   &mo NUM_L      &la FN_L DEL
 //                            ╰─────────────┴──────────────────┴─────────────────┴───────────────────╯  ├─────────────────┤  ╰───────────┴──────────────┴──────────────╯
                                                                                                           &none
 //                                                                                                      ╰─────────────────╯
