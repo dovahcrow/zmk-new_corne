@@ -240,9 +240,9 @@ ZMK_BEHAVIOR(tmuxs, macro,
 // ╭───────────┬────────┬────────┬─────────────┬────────┬────────╮  ╭───────╮  ╭────────────────┬────────────────┬──────────────┬─────────────────┬────────┬───────────╮
      SPAD        AR_1     AR_2     AR_3          AR_4     AR_5        &none      AR_6             AR_LW            AR_RW          &none             &none    &kp BSPC
 // ├───────────┼────────┼────────┼─────────────┼────────┼────────┤  ├───────┤  ├────────────────┼────────────────┼──────────────┼─────────────────┼────────┼───────────┤
-     &kp LALT    &tmux1   &tmux2   &tmux3        &tmux4   &tmux5      &none      &kp LEFT_ARROW   &kp DOWN_ARROW   &kp UP_ARROW   &kp RIGHT_ARROW   &tmuxc   &kp LCTRL
+     &kp LALT    &tmux1   &tmux2   &tmux3        &tmux4   &tmux5      &none      &kp LEFT_ARROW   &kp DOWN_ARROW   &kp UP_ARROW   &kp RIGHT_ARROW   &tmuxs   &kp LCTRL
 // ├───────────┼────────┼────────┼─────────────┼────────┼────────┤  ├───────┤  ├────────────────┼────────────────┼──────────────┼─────────────────┼────────┼───────────┤
-     &kp LSHFT   LG_1     LG_2     LG_3          LG_4     LG_5        &none      &kp HOME         &kp PG_DN        &kp PG_UP      &kp END           &tmuxs   &kp LSHFT
+     &kp LSHFT   LG_1     LG_2     LG_3          LG_4     LG_5        &none      &kp HOME         &kp PG_DN        &kp PG_UP      &kp END           &tmuxc   &kp LSHFT
 // ╰───────────┴────────┼────────┼─────────────┼────────┼────────┤  ├───────┤  ├────────────────┼────────────────┼──────────────┼─────────────────┴────────┴───────────╯
                           &none    &mo MEDIA_L   &none    &none       &none      &kp LA(MINUS)    &kp LA(EQUAL)    &none
 //                      ╰────────┴─────────────┴────────┴────────╯  ├───────┤  ╰────────────────┴────────────────┴──────────────╯
