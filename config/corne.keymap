@@ -241,7 +241,7 @@ ZMK_BEHAVIOR(snpst_vid, macro,
 
             bindings = <
 // ╭───────────┬───────┬───────┬───────┬───────────┬───────╮  ╭───────╮  ╭────────────┬──────────────┬──────────────┬────────────┬───────┬───────────╮
-     &kp LALT    &none   &none   &none   &none       &none      &none      &none        &snpst         &snpst_reg     &snpst_vid   &none   &kp LGUI
+     &kp LALT    &none   &none   &none   &none       &none      &none      &kp F13      &snpst         &snpst_reg     &snpst_vid   &none   &kp LGUI
 // ├───────────┼───────┼───────┼───────┼───────────┼───────┤  ├───────┤  ├────────────┼──────────────┼──────────────┼────────────┼───────┼───────────┤
      &kp LCTRL   &none   &none   &none   &none       &none      &none      &kp C_PREV   &kp C_VOL_DN   &kp C_VOL_UP   &kp C_NEXT   &none   &kp LCTRL
 // ├───────────┼───────┼───────┼───────┼───────────┼───────┤  ├───────┤  ├────────────┼──────────────┼──────────────┼────────────┼───────┼───────────┤
