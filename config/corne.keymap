@@ -25,7 +25,7 @@
 #define AR_TIL &kp LC(LA(COMMA))
 #define OPWD   &kp LG(LA(BSLH))
 
-#define SPAD &kp LS(LC(LA(SPACE)))
+#define SPAD &kp LA(SPACE)
 
 #define MAC_SLP &kp LG(LC(Q))
 
