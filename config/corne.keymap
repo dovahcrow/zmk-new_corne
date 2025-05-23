@@ -193,7 +193,8 @@ ZMK_BEHAVIOR(snpst_vid, macro,
 #define NUM_L    5
 #define FN_L     6
 #define SPCL_L   7
-#define SAMPLE_L 8
+#define GAME_L   8
+#define SAMPLE_L 9
 
 #define MDA(key) &la MEDIA_L key
 #define NAV(key) &la NAV_L   key
@@ -218,7 +219,7 @@ ZMK_BEHAVIOR(snpst_vid, macro,
             display-name = "QWERTY";
             bindings = <
 // ╭────────────┬──────────────┬─────────────┬──────────────┬──────────────┬──────────────╮  ╭────────────╮  ╭──────────────┬──────────────┬──────────────┬─────────────┬────────────────┬────────────╮
-     &kp TAB      &kp Q          &kp W         &kp E          &kp R          &kp T             OPWD /*U*/      &kp Y          &kp U          &kp I          &kp O         &kp P            &kp LGUI
+     &kp TAB      &kp Q          &kp W         &kp E          &kp R          &kp T             OPWD /*U*/      &kp Y          &kp U          &kp I          &kp O         &kp P            &tog GAME_L
 // ├────────────┼──────────────┼─────────────┼──────────────┼──────────────┼──────────────┤  ├────────────┤  ├──────────────┼──────────────┼──────────────┼─────────────┼────────────────┼────────────┤
      &kp ESC      &hml LGUI A    &hml LALT S   &hml LCTRL D   &hml LSHFT F   &kp G             OPWD /*D*/      &kp H          &hmr LSHFT J   &hmr LCTRL K   &hmr LALT L   &hmr LGUI SQT    &kp SEMI
 // ├────────────┼──────────────┼─────────────┼──────────────┼──────────────┼──────────────┤  ├────────────┤  ├──────────────┼──────────────┼──────────────┼─────────────┼────────────────┼────────────┤
@@ -378,6 +379,26 @@ ZMK_BEHAVIOR(snpst_vid, macro,
 
             label = "SPECIAL";
             sensor-bindings = <&scroll_encoder>;
+        };
+
+        game {
+            display-name = "GAME";
+            bindings = <
+// ╭────────────┬───────┬────────┬───────────┬───────────┬───────────╮  ╭────────────╮  ╭───────────┬───────────┬───────────┬─────────┬──────────┬────────────╮
+     &kp TAB      &kp Q   &kp W    &kp E       &kp R       &kp T          OPWD /*U*/      &kp Y       &kp U       &kp I       &kp O     &kp P      &tog GAME_L
+// ├────────────┼───────┼────────┼───────────┼───────────┼───────────┤  ├────────────┤  ├───────────┼───────────┼───────────┼─────────┼──────────┼────────────┤
+     &kp ESC      &kp A   &kp S    &kp D       &kp F       &kp G          OPWD /*D*/      &kp H       &kp J       &kp K       &kp L     &kp SQT    &kp SEMI
+// ├────────────┼───────┼────────┼───────────┼───────────┼───────────┤  ├────────────┤  ├───────────┼───────────┼───────────┼─────────┼──────────┼────────────┤
+     &kp LCTRL    &kp Z   &kp X    &kp C       &kp V       &kp B          OPWD /*L*/      &kp N       &kp M       &kp COMMA   &kp DOT   &kp FSLH   &snpst_pic
+// ╰────────────┴───────┼────────┼───────────┼───────────┼───────────┤  ├────────────┤  ├───────────┼───────────┼───────────┼─────────┴──────────┴────────────╯
+                          CLPBRD   &kp LSHFT   &kp SPACE   &kp ENTER      OPWD /*R*/      &kp ENTER   &kp SPACE   &kp LALT
+//                      ╰────────┴───────────┴───────────┴───────────╯  ├────────────┤  ╰───────────┴───────────┴───────────╯
+                                                                          OPWD
+//                                                                      ╰────────────╯
+            >;
+
+            label = "GAME";
+            sensor-bindings = <&arrow_encoder>;
         };
 
         sample {
