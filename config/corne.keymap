@@ -114,76 +114,100 @@ ZMK_HOLD_TAP(la,
     bindings = <&mo>, <&kp>;
 )
 
-ZMK_BEHAVIOR(tmux1, macro,
+ZMK_BEHAVIOR(TMUX1, macro,
     wait-ms = <100>;
     tap-ms = <5>;
     bindings = <&kp LA(M) &kp N1>;
 )
 
-ZMK_BEHAVIOR(tmux2, macro,
+ZMK_BEHAVIOR(TMUX2, macro,
     wait-ms = <100>;
     tap-ms = <5>;
     bindings = <&kp LA(M) &kp N2>;
 )
 
-ZMK_BEHAVIOR(tmux3, macro,
+ZMK_BEHAVIOR(TMUX3, macro,
     wait-ms = <100>;
     tap-ms = <5>;
     bindings = <&kp LA(M) &kp N3>;
 )
 
-ZMK_BEHAVIOR(tmux4, macro,
+ZMK_BEHAVIOR(TMUX4, macro,
     wait-ms = <100>;
     tap-ms = <5>;
     bindings = <&kp LA(M) &kp N4>;
 )
 
-ZMK_BEHAVIOR(tmux5, macro,
+ZMK_BEHAVIOR(TMUX5, macro,
     wait-ms = <100>;
     tap-ms = <5>;
     bindings = <&kp LA(M) &kp N5>;
 )
 
-ZMK_BEHAVIOR(tmux6, macro,
+ZMK_BEHAVIOR(TMUX6, macro,
     wait-ms = <100>;
     tap-ms = <5>;
     bindings = <&kp LA(M) &kp N6>;
 )
 
-ZMK_BEHAVIOR(tmuxc, macro,
+ZMK_BEHAVIOR(TMUXC, macro,
     wait-ms = <100>;
     tap-ms = <5>;
     bindings = <&kp LA(M) &kp C>;
 )
 
-ZMK_BEHAVIOR(tmuxl, macro,
+ZMK_BEHAVIOR(TMUXL, macro,
     wait-ms = <100>;
     tap-ms = <5>;
     bindings = <&kp LA(M) &kp L>;
 )
 
-ZMK_BEHAVIOR(tmuxs, macro,
+ZMK_BEHAVIOR(TMUXS, macro,
     wait-ms = <100>;
     tap-ms = <5>;
     bindings = <&kp LA(M) &kp LBKT>;
 )
 
-ZMK_BEHAVIOR(snpst_pic, macro,
+ZMK_BEHAVIOR(SNPST_PIC, macro,
     wait-ms = <100>;
     tap-ms = <5>;
     bindings = <&kp LA(LS(LC(U)))>;
 )
 
-ZMK_BEHAVIOR(snpst_reg, macro,
+ZMK_BEHAVIOR(SNPST_REG, macro,
     wait-ms = <100>;
     tap-ms = <5>;
     bindings = <&kp LA(LS(LC(I)))>;
 )
 
-ZMK_BEHAVIOR(snpst_vid, macro,
+ZMK_BEHAVIOR(SNPST_VID, macro,
     wait-ms = <100>;
     tap-ms = <5>;
     bindings = <&kp LA(LS(LC(O)))>;
+)
+
+ZMK_BEHAVIOR(NV_DW, macro,
+    wait-ms = <100>;
+    tap-ms = <5>;
+    bindings = <&kp LC(W) &kp J>;
+)
+
+ZMK_BEHAVIOR(NV_UW, macro,
+    wait-ms = <100>;
+    tap-ms = <5>;
+    bindings = <&kp LC(W) &kp K>;
+)
+
+ZMK_BEHAVIOR(NV_RW, macro,
+    wait-ms = <100>;
+    tap-ms = <5>;
+    bindings = <&kp LC(W) &kp L>;
+)
+
+ZMK_BEHAVIOR(NV_LW, macro,
+    wait-ms = <100>;
+    tap-ms = <5>;
+    bindings = <&kp LC(W) &kp H>;
 )
 
 #define MEDIA_L  1
@@ -218,17 +242,17 @@ ZMK_BEHAVIOR(snpst_vid, macro,
         qwerty {
             display-name = "QWERTY";
             bindings = <
-// ╭────────────┬──────────────┬─────────────┬──────────────┬──────────────┬──────────────╮  ╭────────────╮  ╭──────────────┬──────────────┬──────────────┬─────────────┬────────────────┬────────────╮
-     &kp TAB      &kp Q          &kp W         &kp E          &kp R          &kp T             OPWD /*U*/      &kp Y          &kp U          &kp I          &kp O         &kp P            &none
-// ├────────────┼──────────────┼─────────────┼──────────────┼──────────────┼──────────────┤  ├────────────┤  ├──────────────┼──────────────┼──────────────┼─────────────┼────────────────┼────────────┤
-     &kp ESC      &hml LGUI A    &hml LALT S   &hml LCTRL D   &hml LSHFT F   &kp G             OPWD /*D*/      &kp H          &hmr LSHFT J   &hmr LCTRL K   &hmr LALT L   &hmr LGUI SQT    &kp SEMI
-// ├────────────┼──────────────┼─────────────┼──────────────┼──────────────┼──────────────┤  ├────────────┤  ├──────────────┼──────────────┼──────────────┼─────────────┼────────────────┼────────────┤
-     &caps_word   &kp Z          &kp X         &kp C          &kp V          &kp B             OPWD /*L*/      &kp N          &kp M          &kp COMMA      &kp DOT       &kp FSLH         &snpst_pic
-// ╰────────────┴──────────────┼─────────────┼──────────────┼──────────────┼──────────────┤  ├────────────┤  ├──────────────┼──────────────┼──────────────┼─────────────┴────────────────┴────────────╯
-                                 CLPBRD        MDA(BSPC)      NAV(SPACE)     MSE(ENTER)        OPWD /*R*/      SYM(ENTER)     NUM(SPACE)     FN(DEL)
-//                             ╰─────────────┴──────────────┴──────────────┴──────────────╯  ├────────────┤  ╰──────────────┴──────────────┴──────────────╯
+// ╭────────────┬──────────────┬─────────────┬──────────────┬──────────────┬──────────────╮  ╭──────────────╮  ╭──────────────┬──────────────┬──────────────┬─────────────┬────────────────┬────────────╮
+     &kp TAB      &kp Q          &kp W         &kp E          &kp R          &kp T             &NV_UW /*U*/     &kp Y          &kp U          &kp I          &kp O         &kp P            &none
+// ├────────────┼──────────────┼─────────────┼──────────────┼──────────────┼──────────────┤  ├──────────────┤  ├──────────────┼──────────────┼──────────────┼─────────────┼────────────────┼────────────┤
+     &kp ESC      &hml LGUI A    &hml LALT S   &hml LCTRL D   &hml LSHFT F   &kp G             &NV_DW /*D*/     &kp H          &hmr LSHFT J   &hmr LCTRL K   &hmr LALT L   &hmr LGUI SQT    &kp SEMI
+// ├────────────┼──────────────┼─────────────┼──────────────┼──────────────┼──────────────┤  ├──────────────┤  ├──────────────┼──────────────┼──────────────┼─────────────┼────────────────┼────────────┤
+     &caps_word   &kp Z          &kp X         &kp C          &kp V          &kp B             &NV_LW /*L*/     &kp N          &kp M          &kp COMMA      &kp DOT       &kp FSLH         &SNPST_PIC
+// ╰────────────┴──────────────┼─────────────┼──────────────┼──────────────┼──────────────┤  ├──────────────┤  ├──────────────┼──────────────┼──────────────┼─────────────┴────────────────┴────────────╯
+                                 CLPBRD        MDA(BSPC)      NAV(SPACE)     MSE(ENTER)        &NV_RW /*R*/     SYM(ENTER)     NUM(SPACE)     FN(DEL)
+//                             ╰─────────────┴──────────────┴──────────────┴──────────────╯  ├──────────────┤  ╰──────────────┴──────────────┴──────────────╯
                                                                                                OPWD
-//                                                                                           ╰────────────╯
+//                                                                                           ╰──────────────╯
             >;
 
             label = "QWERTY";
@@ -240,7 +264,7 @@ ZMK_BEHAVIOR(snpst_vid, macro,
 
             bindings = <
 // ╭───────────┬───────┬───────┬───────┬───────────┬───────╮  ╭───────╮  ╭────────────┬──────────────┬──────────────┬────────────┬───────┬───────────╮
-     &kp LALT    &none   &none   &none   &none       &none      &none      &kp F13      &snpst_pic     &snpst_reg     &snpst_vid   &none   &kp LGUI
+     &kp LALT    &none   &none   &none   &none       &none      &none      &kp F13      &SNPST_PIC     &SNPST_REG     &SNPST_VID   &none   &kp LGUI
 // ├───────────┼───────┼───────┼───────┼───────────┼───────┤  ├───────┤  ├────────────┼──────────────┼──────────────┼────────────┼───────┼───────────┤
      &kp LCTRL   &none   &none   &none   &none       &none      &none      &kp C_PREV   &kp C_VOL_DN   &kp C_VOL_UP   &kp C_NEXT   &none   &kp LCTRL
 // ├───────────┼───────┼───────┼───────┼───────────┼───────┤  ├───────┤  ├────────────┼──────────────┼──────────────┼────────────┼───────┼───────────┤
@@ -263,9 +287,9 @@ ZMK_BEHAVIOR(snpst_vid, macro,
 // ╭───────────┬────────┬────────┬─────────────┬────────┬────────╮  ╭───────╮  ╭────────────────┬────────────────┬──────────────┬─────────────────┬────────┬───────────╮
      SPAD        AR_1     AR_2     AR_3          AR_4     AR_5        &none      AR_6             AR_LW            AR_RW          &none             &none    &kp BSPC
 // ├───────────┼────────┼────────┼─────────────┼────────┼────────┤  ├───────┤  ├────────────────┼────────────────┼──────────────┼─────────────────┼────────┼───────────┤
-     &kp LALT    &tmux1   &tmux2   &tmux3        &tmux4   &tmux5      &none      &kp LEFT_ARROW   &kp DOWN_ARROW   &kp UP_ARROW   &kp RIGHT_ARROW   &tmuxs   &kp LCTRL
+     &kp LALT    &TMUX1   &TMUX2   &TMUX3        &TMUX4   &TMUX5      &none      &kp LEFT_ARROW   &kp DOWN_ARROW   &kp UP_ARROW   &kp RIGHT_ARROW   &TMUXS   &kp LCTRL
 // ├───────────┼────────┼────────┼─────────────┼────────┼────────┤  ├───────┤  ├────────────────┼────────────────┼──────────────┼─────────────────┼────────┼───────────┤
-     &none       LG_1     LG_2     LG_3          LG_4     LG_5        &none      &kp HOME         &kp PG_DN        &kp PG_UP      &kp END           &tmuxc   &kp LSHFT
+     &none       LG_1     LG_2     LG_3          LG_4     LG_5        &none      &kp HOME         &kp PG_DN        &kp PG_UP      &kp END           &TMUXC   &kp LSHFT
 // ╰───────────┴────────┼────────┼─────────────┼────────┼────────┤  ├───────┤  ├────────────────┼────────────────┼──────────────┼─────────────────┴────────┴───────────╯
                           &none    &mo MEDIA_L   &none    &none       &none      &kp LC(O)    &kp LC(I)    &none
 //                      ╰────────┴─────────────┴────────┴────────╯  ├───────┤  ╰────────────────┴────────────────┴──────────────╯
@@ -389,7 +413,7 @@ ZMK_BEHAVIOR(snpst_vid, macro,
 // ├────────────┼───────┼────────┼───────────┼───────────┼───────────┤  ├────────────┤  ├───────────┼───────────┼───────────┼─────────┼──────────┼────────────┤
      &kp ESC      &kp A   &kp S    &kp D       &kp F       &kp G          OPWD /*D*/      &kp H       &kp J       &kp K       &kp L     &kp SQT    &kp SEMI
 // ├────────────┼───────┼────────┼───────────┼───────────┼───────────┤  ├────────────┤  ├───────────┼───────────┼───────────┼─────────┼──────────┼────────────┤
-     &kp LCTRL    &kp Z   &kp X    &kp C       &kp V       &kp B          OPWD /*L*/      &kp N       &kp M       &kp COMMA   &kp DOT   &kp FSLH   &snpst_pic
+     &kp LCTRL    &kp Z   &kp X    &kp C       &kp V       &kp B          OPWD /*L*/      &kp N       &kp M       &kp COMMA   &kp DOT   &kp FSLH   &SNPST_PIC
 // ╰────────────┴───────┼────────┼───────────┼───────────┼───────────┤  ├────────────┤  ├───────────┼───────────┼───────────┼─────────┴──────────┴────────────╯
                           CLPBRD   &kp LSHFT   &kp SPACE   &kp ENTER      OPWD /*R*/      &kp ENTER   &kp SPACE   &kp LALT
 //                      ╰────────┴───────────┴───────────┴───────────╯  ├────────────┤  ╰───────────┴───────────┴───────────╯
