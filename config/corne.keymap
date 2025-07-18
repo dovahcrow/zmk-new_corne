@@ -9,19 +9,20 @@
 #include "zmk-helpers/helper.h"
 #include <behaviors/num_word.dtsi>
 
-#define AR_1   &kp LC(LA(N1))
-#define AR_2   &kp LC(LA(N2))
-#define AR_3   &kp LC(LA(N3))
-#define AR_4   &kp LC(LA(N4))
-#define AR_5   &kp LC(LA(N5))
-#define AR_6   &kp LC(LA(N6))
-#define AR_7   &kp LC(LA(N7))
-#define AR_LW  &kp LC(LA(H))
-#define AR_RW  &kp LC(LA(L))
-#define AR_ACC &kp LC(LA(FSLH))
-#define AR_TIL &kp LC(LA(COMMA))
-#define OPWD   &kp LG(LA(BSLH))
-#define CLPBRD   &kp LG(LS(V))
+#define AR_1    &kp LC(LA(N1))
+#define AR_2    &kp LC(LA(N2))
+#define AR_3    &kp LC(LA(N3))
+#define AR_4    &kp LC(LA(N4))
+#define AR_5    &kp LC(LA(N5))
+#define AR_6    &kp LC(LA(N6))
+#define AR_7    &kp LC(LA(N7))
+#define AR_LW   &kp LC(LA(H))
+#define AR_RW   &kp LC(LA(L))
+#define AR_FSCR &kp LS(LA(SPACE))
+#define AR_ACC  &kp LC(LA(FSLH))
+#define AR_TIL  &kp LC(LA(COMMA))
+#define OPWD    &kp LG(LA(BSLH))
+#define CLPBRD  &kp LG(LS(V))
 
 #define SPAD &kp LA(SPACE)
 
@@ -287,11 +288,11 @@ ZMK_BEHAVIOR(NV_LW, macro,
 // ╭───────────┬────────┬────────┬─────────────┬────────┬────────╮  ╭───────╮  ╭────────────────┬────────────────┬──────────────┬─────────────────┬────────┬───────────╮
      SPAD        AR_1     AR_2     AR_3          AR_4     AR_5        &none      AR_6             AR_LW            AR_RW          &none             &none    &kp BSPC
 // ├───────────┼────────┼────────┼─────────────┼────────┼────────┤  ├───────┤  ├────────────────┼────────────────┼──────────────┼─────────────────┼────────┼───────────┤
-     &kp LALT    &TMUX1   &TMUX2   &TMUX3        &TMUX4   &TMUX5      &none      &kp LEFT_ARROW   &kp DOWN_ARROW   &kp UP_ARROW   &kp RIGHT_ARROW   &TMUXS   &kp LCTRL
+     AR_FSCR     &TMUX1   &TMUX2   &TMUX3        &TMUX4   &TMUX5      &none      &kp LEFT_ARROW   &kp DOWN_ARROW   &kp UP_ARROW   &kp RIGHT_ARROW   &TMUXS   &kp LCTRL
 // ├───────────┼────────┼────────┼─────────────┼────────┼────────┤  ├───────┤  ├────────────────┼────────────────┼──────────────┼─────────────────┼────────┼───────────┤
      &none       LG_1     LG_2     LG_3          LG_4     LG_5        &none      &kp HOME         &kp PG_DN        &kp PG_UP      &kp END           &TMUXC   &kp LSHFT
 // ╰───────────┴────────┼────────┼─────────────┼────────┼────────┤  ├───────┤  ├────────────────┼────────────────┼──────────────┼─────────────────┴────────┴───────────╯
-                          &none    &mo MEDIA_L   &none    &none       &none      &kp LC(O)    &kp LC(I)    &none
+                          &none    &mo MEDIA_L   &none    &none       &none      &kp LC(O)        &kp LC(I)        &none
 //                      ╰────────┴─────────────┴────────┴────────╯  ├───────┤  ╰────────────────┴────────────────┴──────────────╯
                                                                       &none
 //                                                                  ╰───────╯
