@@ -24,8 +24,6 @@
 #define OPWD    &kp LG(LA(BSLH))
 #define CLPBRD  &kp LG(LS(V))
 
-#define SPAD &kp LA(SPACE)
-
 #define MAC_SLP &kp LG(LC(Q))
 
 #define LG_1 &kp LG(N1)
@@ -33,6 +31,8 @@
 #define LG_3 &kp LG(N3)
 #define LG_4 &kp LG(N4)
 #define LG_5 &kp LG(N5)
+
+#define PD(key) &kp LA(LC(LS(key)))
 
 / {
     behaviors {
@@ -286,7 +286,7 @@ ZMK_BEHAVIOR(NV_LW, macro,
 
             bindings = <
 // ╭───────────┬────────┬────────┬─────────────┬────────┬────────╮  ╭───────╮  ╭────────────────┬────────────────┬──────────────┬─────────────────┬────────┬───────────╮
-     SPAD        AR_1     AR_2     AR_3          AR_4     AR_5        &none      AR_6             AR_LW            AR_RW          &none             &none    &kp BSPC
+     &none       AR_1     AR_2     AR_3          AR_4     AR_5        &none      AR_6             AR_LW            AR_RW          &none             &none    &kp BSPC
 // ├───────────┼────────┼────────┼─────────────┼────────┼────────┤  ├───────┤  ├────────────────┼────────────────┼──────────────┼─────────────────┼────────┼───────────┤
      AR_FSCR     &TMUX1   &TMUX2   &TMUX3        &TMUX4   &TMUX5      &none      &kp LEFT_ARROW   &kp DOWN_ARROW   &kp UP_ARROW   &kp RIGHT_ARROW   &TMUXS   &kp LCTRL
 // ├───────────┼────────┼────────┼─────────────┼────────┼────────┤  ├───────┤  ├────────────────┼────────────────┼──────────────┼─────────────────┼────────┼───────────┤
@@ -306,9 +306,9 @@ ZMK_BEHAVIOR(NV_LW, macro,
             display-name = "MOUSE";
             bindings = <
 // ╭───────────┬───────┬───────┬───────┬───────┬───────╮  ╭───────╮  ╭────────────────────┬────────────────┬────────────────┬─────────────────────┬───────┬──────────────╮
-     &kp LALT    &none   &none   &none   &none   &none      &none      &mmv MOVE_LEFT       &mmv MOVE_DOWN   &mmv MOVE_UP     &mmv MOVE_RIGHT       &none   &kp LA(BSPC)
+     PD(SPACE)   PD(Q)   PD(W)   PD(E)   PD(R)   PD(T)      &none      &mmv MOVE_LEFT       &mmv MOVE_DOWN   &mmv MOVE_UP     &mmv MOVE_RIGHT       &none   &kp LA(BSPC)
 // ├───────────┼───────┼───────┼───────┼───────┼───────┤  ├───────┤  ├────────────────────┼────────────────┼────────────────┼─────────────────────┼───────┼──────────────┤
-     &kp LCTRL   &none   &none   &none   &none   &none      &none      &kp LA(LEFT_ARROW)   &none            &none            &kp LA(RIGHT_ARROW)   &none   &kp LCTRL
+     &kp LCTRL   PD(A)   PD(S)   PD(D)   PD(F)   PD(G)      &none      &kp LA(LEFT_ARROW)   &none            &none            &kp LA(RIGHT_ARROW)   &none   &kp LCTRL
 // ├───────────┼───────┼───────┼───────┼───────┼───────┤  ├───────┤  ├────────────────────┼────────────────┼────────────────┼─────────────────────┼───────┼──────────────┤
      &none       &none   &none   &none   &none   &none      &none      &msc SCRL_LEFT       &msc SCRL_UP     &msc SCRL_DOWN   &msc SCRL_RIGHT       &none   &kp LSHFT
 // ╰───────────┴───────┼───────┼───────┼───────┼───────┤  ├───────┤  ├────────────────────┼────────────────┼────────────────┼─────────────────────┴───────┴──────────────╯
